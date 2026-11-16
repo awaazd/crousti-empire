@@ -198,37 +198,92 @@ main.app{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px));display:fle
 .card .kicker{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-2);font-weight:900}
 .card.adv{background:#000}
 .toast{position:fixed;left:50%;top:calc(70px + env(safe-area-inset-top,0px));transform:translateX(-50%);background:#fff;color:var(--navy);font-weight:900;padding:10px 18px;border-radius:999px;z-index:30;font-size:.88rem;max-width:90vw;text-align:center;box-shadow:0 12px 30px #0007}
+/* idle layer: city card, missions, station rows, live bars */
+.city{padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.city .row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.city b{font-family:var(--display);font-weight:600;font-size:1.05rem}
+.city span{font-size:.75rem;color:var(--muted);font-weight:800}
+.city .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.city .btn{padding:11px 10px;font-size:.8rem;border-radius:14px}
+.btn.glow{background:linear-gradient(135deg,#ffcf4a,#ff8a3d);color:#3a1600;box-shadow:0 8px 20px #ffb54755}
+.mis{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.mrow{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center}
+.mrow .e{font-size:22px;text-align:center}
+.mrow b{display:block;font-size:.82rem;font-weight:900;line-height:1.2}
+.mrow small{display:block;font-size:.66rem;color:var(--muted);font-weight:800}
+.mrow .meter{height:6px;margin-top:4px}
+.mrow .claim{border:0;border-radius:999px;padding:8px 12px;font-weight:900;font-size:.75rem;cursor:pointer;background:rgba(255,255,255,.08);color:var(--muted);white-space:nowrap}
+.mrow .claim.ok{background:var(--grad);color:#fff;animation:ring 1.3s infinite}
+.buyseg{display:flex;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.buyseg button{border:0;background:none;color:var(--muted);font-weight:900;font-size:.72rem;padding:5px 10px;border-radius:999px;cursor:pointer}
+.buyseg button[aria-pressed="true"]{background:#fff;color:var(--navy)}
+.rows{display:flex;flex-direction:column;gap:10px}
+.srow{display:grid;grid-template-columns:58px 1fr auto;gap:6px 12px;align-items:center;padding:12px;border-radius:22px;background:var(--glass);border:1px solid var(--line)}
+.srow .ic{grid-row:1/3;width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:36px;border:0;cursor:pointer;position:relative;background:linear-gradient(145deg,color-mix(in srgb,var(--c) 90%,#fff),color-mix(in srgb,var(--c) 60%,#14164a))}
+.srow .ic .lv{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);background:#fff;color:var(--navy);font:900 .62rem var(--body);border-radius:999px;padding:1px 7px;white-space:nowrap}
+.srow .tx{min-width:0}
+.srow .tx b{font-family:var(--display);font-weight:600;font-size:1rem;display:block;line-height:1.1}
+.srow .tx small{display:block;font-size:.7rem;font-weight:800;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.srow .tx .rate{color:var(--ok)}
+.srow .meter{height:6px;margin:5px 0 2px}
+.srow .upb{border:0;border-radius:16px;padding:9px 12px;cursor:pointer;font-weight:900;font-size:.78rem;line-height:1.15;background:rgba(255,255,255,.1);color:var(--muted);text-align:center;min-width:92px}
+.srow .upb small{display:block;font-size:.68rem;font-weight:800}
+.srow .upb.ok{background:var(--grad);color:#fff;box-shadow:0 8px 18px #ff4fa335}
+.srow .chips{grid-column:2/4;display:flex;gap:6px;flex-wrap:wrap}
+.chipb{border:1px solid var(--line);background:rgba(255,255,255,.06);border-radius:999px;padding:6px 10px;font-weight:900;font-size:.7rem;cursor:pointer;color:var(--muted);white-space:nowrap}
+.chipb.ok{border-color:#4ee6a280;color:var(--ok);background:rgba(78,230,162,.1)}
+.chipb.hot{border-color:#ffb547;color:#ffcf4a;background:rgba(255,181,71,.12)}
+.chipb.on{border-color:transparent;background:var(--grad);color:#fff}
+.srow.locked .ic{filter:grayscale(1);opacity:.55}
+.up.done{opacity:.6;cursor:default}
+.up.done .price{background:rgba(78,230,162,.18);color:var(--ok)}
+/* map additions */
+.station .sbar{width:58px;height:7px;border-radius:999px;background:#14164a26;overflow:hidden}
+.station .sbar i{display:block;height:100%;width:0;background:var(--c);border-radius:999px}
+.station .coin{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:26px;animation:bob .8s infinite;filter:drop-shadow(0 3px 3px #14164a55)}
+.station .boost{position:absolute;bottom:-6px;left:-8px;font-size:18px}
+.station .price2{font-weight:900;font-size:.62rem;color:#fff;background:#14164acc;border-radius:999px;padding:2px 7px;white-space:nowrap}
+.mgr{position:absolute;transform:translate(-50%,-62%);z-index:4;pointer-events:none}
+.mgr .ppl{width:30px;height:42px}
+.zp{position:absolute;transform:translate(-50%,-50%);z-index:2;background:#ffffffe6;color:var(--navy);font:900 .58rem var(--body);border-radius:999px;padding:3px 7px;white-space:nowrap;box-shadow:0 3px 8px #14164a30}
+.vip{pointer-events:auto;cursor:pointer;z-index:6}
+.vip small{background:#ffcf4a!important;animation:bob .7s infinite}
+.float{position:absolute;transform:translate(-50%,-50%);z-index:7;font:900 .85rem var(--body);color:#14164a;background:#fff;border-radius:999px;padding:2px 8px;pointer-events:none;animation:floatup 1s ease-out forwards;white-space:nowrap}
+@keyframes floatup{to{transform:translate(-50%,-260%);opacity:0}}
+.rush{position:absolute;top:8px;right:8px;z-index:5;background:var(--grad);color:#fff;font:900 .7rem var(--body);border-radius:999px;padding:4px 10px;box-shadow:0 6px 14px #14164a40}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
 <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
 
 <div class="hud wrap"><div class="app">
-  <div class="who"><div class="logo">🍗</div><div><b>Crousti Empire</b><small id="rankLine">Petit stand · Niv. 1</small></div></div>
-  <div class="chip"><span class="ic">💰</span><span id="money">0 €</span></div>
+  <div class="who"><div class="logo">🍗</div><div><b>Crousti Empire</b><small id="rankLine">Petit stand</small></div></div>
+  <div class="chip"><span class="ic">💰</span><span><span id="money">0 €</span><br><small id="rateTop">0 €/s</small></span></div>
   <button class="iconbtn" id="helpBtn" aria-label="Comment jouer">?</button>
 </div></div>
 
 <main class="app wrap">
   <section class="view" id="v_home">
-    <div class="glass lvl"><div class="row"><b id="rank">Petit stand</b><span id="lvlTxt">Niveau 1</span></div><div class="meter"><i id="lvlBar"></i></div><span id="nextTxt"></span></div>
+    <div class="glass city">
+      <div class="row"><b id="cityName">🏙️ Lille</b><span id="starTxt">⭐ 0</span></div>
+      <div class="meter"><i id="preBar"></i></div><span id="preTxt"></span>
+      <div class="acts"><button class="btn" id="rushBtn">▶ Rush x2 · 4 min</button><button class="btn" id="preBtn">🏙️ Nouveau resto</button></div>
+    </div>
     <div class="map" id="map" aria-label="Plan de ton restaurant">
       <div class="kfloor"></div><div class="tag" style="left:12px;top:8px">Cuisine</div><div class="tag" style="left:12px;top:40%">Salle</div>
-      <div class="counter"></div><div class="door">ENTRÉE</div><div id="mapItems"></div>
+      <div class="counter"></div><div class="door">ENTRÉE</div><div id="mapItems"></div><div class="rush" id="rushTag" hidden></div>
     </div>
+    <div class="sec"><h2>Objectifs</h2><span id="misHint"></span></div>
+    <div class="glass mis" id="mis"></div>
+    <div class="sec"><h2>Postes</h2><div class="buyseg" id="buyseg"><button data-n="1">x1</button><button data-n="10">x10</button><button data-n="0">Max</button></div></div>
+    <div class="rows" id="rows"></div>
+    <div class="plays" id="plays"></div>
     <div class="sec"><h2>Agrandir</h2><span id="upHint"></span></div>
     <div class="ups" id="ups"></div>
-    <div class="sec"><h2>Jouer</h2><span id="rateTxt">0 €/min en salle</span></div>
-    <div class="plays" id="plays"></div>
     <div class="extra"><button class="btn ghost" id="noAdsBtn">🚫 Retirer les pubs</button><button class="btn ghost" id="resetBtn">↺ Recommencer</button></div>
   </section>
-
-
-
   <div class="ad-banner" id="banner">Bannière AdMob (simulée)</div>
 </main>
-
-
 
 <div class="stage" id="stage" hidden>
   <div class="blobs" aria-hidden="true"><i></i><i></i><i></i></div>
@@ -241,85 +296,176 @@ main.app{padding-bottom:calc(40px + env(safe-area-inset-bottom,0px));display:fle
 
 <script>
 const $=id=>document.getElementById(id);
-const store={get(k,d){try{const v=localStorage.getItem("ce5_"+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem("ce5_"+k,JSON.stringify(v))}catch(e){}},clear(){try{Object.keys(localStorage).filter(k=>k.startsWith("ce5_")).forEach(k=>localStorage.removeItem(k))}catch(e){}}};
-function fresh(){return{gl:{fry:0,sauce:0,catch:0},hints:3,daily:0,money:0,lifetime:0,up:{fry:0,tables:0,deco:0,staff:0},best:{},plays:0,tut:0,noAds:false,lastAd:0,last:Date.now()}}
-let G=Object.assign(fresh(),store.get("save",{}));G.up=Object.assign(fresh().up,G.up);G.gl=Object.assign(fresh().gl,G.gl);
+const store={get(k,d){try{const v=localStorage.getItem("ce6_"+k);return v===null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem("ce6_"+k,JSON.stringify(v))}catch(e){}},clear(){try{Object.keys(localStorage).filter(k=>k.startsWith("ce6_")).forEach(k=>localStorage.removeItem(k))}catch(e){}}};
+
+// ---- stations: each one cooks on a loop and earns per cycle ----
+const ST=[
+  {k:"fry",e:"🍗",piece:"🍗",word:"tender",c:"#ffb547",name:"Friteuse",lbl:"Friteuse",b:5,g:1.13,inc:1,cy:1.2,m:250,boss:"Momo",sizes:[5,5,5,5,6,6]},
+  {k:"sauce",e:"🥫",piece:"🥫",word:"pot de sauce",c:"#ff6b8f",name:"Bar à sauces",lbl:"Sauces",b:200,g:1.14,inc:9,cy:3,m:4000,boss:"Inès",sizes:[5,6,6,6,7]},
+  {k:"catch",e:"📦",piece:"📦",word:"colis",c:"#5cc8ff",name:"Livraisons",lbl:"Livraisons",b:6000,g:1.15,inc:110,cy:6,m:90000,boss:"Yanis",sizes:[6,6,7,7,8]},
+  {k:"memo",e:"🧾",piece:"🍔",word:"burger",c:"#a98bff",name:"Caisse",lbl:"Caisse",b:150000,g:1.16,inc:1500,cy:12,m:1.5e6,boss:"Lina",sizes:[6,7,7,8,8]},
+];
+const SK={};ST.forEach(s=>SK[s.k]=s);
+const DAILY={k:"daily",e:"🗓️",piece:"🍔",word:"burger",c:"#a98bff",name:"Défi du jour",daily:true};
+const MS=[10,25,50,100,150,200,300,400,500];
+const ZONES=[
+  {k:"terr",e:"⛱️",name:"Terrasse",cost:25000,s:"Tous les gains x1,5",f:()=>1.5},
+  {k:"drive",e:"🚗",name:"Drive",cost:6e5,s:"Livraisons et Caisse x3",f:k=>k==="catch"||k==="memo"?3:1},
+  {k:"etage",e:"🛗",name:"Salle à l'étage",cost:8e6,s:"Tous les gains x2",f:()=>2},
+  {k:"truck",e:"🚚",name:"Food truck",cost:2e8,s:"Tous les gains x3",f:()=>3},
+];
+const NIGHT=[2,4,8,12],NIGHT_COST=[2000,80000,3e6];
+const CITIES=["Lille","Lyon","Marseille","Toulouse","Bordeaux","Nantes","Strasbourg","Nice","Paris"];
+const RANKS=["Petit stand","Snack de quartier","Resto crousty","Resto star","Chaîne régionale","Empire national","Légende du crousty"],RANK_AT=[0,25,60,110,180,270,400];
+const PRESTIGE_AT=1e6;
+
+function freshSt(){const o={};ST.forEach((s,i)=>o[s.k]={l:i?0:1,m:0,t:0,r:0});return o}
+function fresh(){return{v:6,money:0,run:0,life:0,stars:0,city:0,st:freshSt(),zones:[],deco:0,night:0,boost:{},rush:0,gl:{fry:0,sauce:0,catch:0,memo:0},hints:3,daily:0,plays:0,taps:0,tut:0,noAds:false,lastAd:0,last:Date.now(),mis:[],misN:0,login:{day:0,streak:0},buy:1}}
+let G=Object.assign(fresh(),store.get("save",{}));G.st=Object.assign(freshSt(),G.st);G.gl=Object.assign(fresh().gl,G.gl);
 function save(){G.last=Date.now();store.set("save",G)}
-const SUF=["","k","M","Md","T"];
-function fmt(n){if(n<1000)return Math.floor(n)+" €";let i=0;while(n>=1000&&i<SUF.length-1){n/=1000;i++}return n.toFixed(n<10?2:n<100?1:0).replace(".",",")+" "+SUF[i]+" €"}
-function todayKey(){const d=new Date();return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
-
-// ---- restaurant growth ----
-const UPS=[
-  {k:"fry",e:"🍳",name:"Friteuses",s:()=>"+25 % par grille",d:()=>"Toutes les grilles rapportent +25 % par niveau. Bonus actuel : x"+mult().toFixed(2).replace(".",","),base:40,g:1.55},
-  {k:"tables",e:"🪑",name:"Tables",s:()=>"Gains passifs",d:()=>"Une table de plus en salle. Les clients rapportent "+fmt(passive())+"/min, même quand tu ne joues pas",base:60,g:1.6},
-  {k:"deco",e:"🪴",name:"Déco",s:()=>"+15 % sur tout",d:()=>"Plantes, lumières, néons : +15 % sur tous tes gains",base:120,g:1.75},
-  {k:"staff",e:"👩‍🍳",name:"Équipe",s:()=>"Hors ligne +1 h",d:()=>"Le resto tourne fermé jusqu'à "+offlineCap()+" h d'affilée",base:200,g:1.9},
-];
-const RANKS=["Petit stand","Food truck","Snack de quartier","Resto crousty","Resto star","Chaîne régionale","Empire national","Légende du crousty"];
-function level(){return 1+G.up.fry+G.up.tables+G.up.deco+G.up.staff}
-function rankIdx(){return Math.min(RANKS.length-1,Math.floor((level()-1)/4))}
-function decoMult(){return 1+0.15*G.up.deco}
-function mult(){return(1+0.25*G.up.fry)*decoMult()}
-function passive(){return G.up.tables*12*decoMult()}
-function offlineCap(){return 1+G.up.staff}
-function upCost(u){return Math.round(u.base*Math.pow(u.g,G.up[u.k]))}
-
-// ---- puzzles per station ----
-const GAMES=[
-  {k:"fry",e:"🍗",piece:"🍗",word:"tender",c:"#ffb547",name:"Friteuse",unlock:1,sizes:[5,5,5,5,6,6]},
-  {k:"sauce",e:"🥫",piece:"🥫",word:"pot de sauce",c:"#ff6b8f",name:"Bar à sauces",unlock:2,sizes:[5,6,6,6,7]},
-  {k:"catch",e:"📦",piece:"📦",word:"colis",c:"#5cc8ff",name:"Livraisons",unlock:4,sizes:[6,6,7,7,8]},
-  {k:"memo",e:"🧾",piece:"🍔",word:"burger",c:"#a98bff",name:"Défi du jour",unlock:1,daily:true},
-];
-const BASE={5:40,6:70,7:110,8:170,9:250};
-function gridSize(g){return g.daily?7:g.sizes[Math.min(g.sizes.length-1,G.gl[g.k])]}
-function rulesFor(g){return "Place <b>1 "+g.word+" par ligne, par colonne et par zone de couleur</b>. Le premier est déjà posé pour t'aider. Deux "+g.piece+" ne peuvent jamais se toucher, même en diagonale. 3 erreurs max, et x1,5 si tu ne te trompes pas."+(g.daily?" Une seule grille par jour, mais elle rapporte <b>3 fois plus</b>.":"")}
+const SUF=["","k","M","Md","T","Qa","Qi"];
+function fmt(n){if(n<1000)return(n<10&&n%1?n.toFixed(1).replace(".",","):Math.floor(n))+" €";let i=0;while(n>=1000&&i<SUF.length-1){n/=1000;i++}return n.toFixed(n<10?2:n<100?1:0).replace(".",",")+" "+SUF[i]+" €"}
+const fmtT=s=>Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0");
+function dayKey(off=0){const d=new Date(Date.now()+off*864e5);return d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate()}
+const todayKey=()=>dayKey(0);
 const dailyDone=()=>G.daily===todayKey();
 
-const tab="home";
+// ---- economy ----
+const msCount=l=>MS.filter(x=>l>=x).length;
+const nextMS=l=>MS.find(x=>x>l);
+const rushOn=()=>G.rush>Date.now();
+const boostOn=k=>(G.boost[k]||0)>Date.now();
+function baseMult(k){let m=(1+.1*G.stars)*(1+.1*G.deco);ZONES.forEach(z=>{if(G.zones.includes(z.k))m*=z.f(k)});return m}
+function perCycle(k,live=true){const s=G.st[k],d=SK[k];if(!s.l)return 0;let v=d.inc*s.l*Math.pow(2,msCount(s.l))*baseMult(k);if(live){if(rushOn())v*=2;if(boostOn(k))v*=2}return v}
+const rate=(k,live)=>perCycle(k,live)/SK[k].cy;
+const totalRate=(live=true)=>ST.reduce((a,s)=>a+rate(s.k,live),0);
+const offlineRate=()=>ST.reduce((a,s)=>a+(G.st[s.k].m?rate(s.k,false):0),0);
+function cost(k,n){const s=G.st[k],d=SK[k];if(!s.l)return d.b;return d.b*Math.pow(d.g,s.l)*(Math.pow(d.g,n)-1)/(d.g-1)}
+function maxBuy(k){const s=G.st[k],d=SK[k];if(!s.l)return G.money>=d.b?1:0;const c0=d.b*Math.pow(d.g,s.l);return Math.max(0,Math.floor(Math.log(G.money*(d.g-1)/c0+1)/Math.log(d.g)))}
+function buyN(k){if(!G.st[k].l)return 1;return G.buy?G.buy:Math.max(1,maxBuy(k))}
+function totalLvl(){return ST.reduce((a,s)=>a+G.st[s.k].l,0)}
+function rankIdx(){let i=0;RANK_AT.forEach((t,j)=>{if(totalLvl()>=t)i=j});return i}
+const offlineCap=()=>NIGHT[G.night];
+const decoCost=()=>Math.round(300*Math.pow(3,G.deco));
+const starsTotal=()=>Math.floor(10*Math.sqrt(G.life/PRESTIGE_AT));
+const starsClaim=()=>Math.max(0,starsTotal()-G.stars);
+const cityName=()=>CITIES[G.city%CITIES.length]+(G.city>=CITIES.length?" "+(Math.floor(G.city/CITIES.length)+1):"");
+function earn(v){G.money+=v;G.run+=v;G.life+=v}
+
+function buy(k){const s=G.st[k],n=buyN(k),c=cost(k,n),d=SK[k];if(G.money<c){toast("Il te manque "+fmt(c-G.money));return}
+  G.money-=c;const before=msCount(s.l),opening=!s.l;s.l+=n;save();
+  if(opening)toast("🎉 "+d.name+" ouvert !");else if(msCount(s.l)>before)toast("🚀 Palier "+MS[msCount(s.l)-1]+" : "+d.name+" x2 !");
+  pulse();render()}
+function hire(k){const d=SK[k],s=G.st[k];if(s.m||!s.l)return;if(G.money<d.m){toast("Il te manque "+fmt(d.m-G.money)+" pour embaucher "+d.boss);return}
+  G.money-=d.m;s.m=1;if(s.r){earn(perCycle(k));s.r=0;s.t=0}save();toast("👤 "+d.boss+" gère "+d.name+", même hors ligne");render()}
+function collect(k,el){const s=G.st[k];if(!s.r)return;const v=perCycle(k);earn(v);s.r=0;s.t=0;G.taps++;floaty("+"+fmt(v),el);if(G.taps<=3)coach()}
+function pulse(){const m=$("map");m.classList.remove("pulse");void m.offsetWidth;m.classList.add("pulse")}
+
+// ---- missions ----
+const MIS_E={lvl:"⬆️",open:"🔓",mgr:"👤",earn:"💰",grid:"🧩",zone:"🏗️"};
+function niceNum(n){const p=Math.pow(10,Math.floor(Math.log10(n))-1);return Math.ceil(n/p)*p}
+function newMission(){const opts=[],have=G.mis.map(m=>m.t+(m.k||""));const U=ST.filter(s=>G.st[s.k].l);
+  U.forEach(s=>{const l=G.st[s.k].l,nm=nextMS(l);opts.push({t:"lvl",k:s.k,n:nm&&nm-l<=20?nm:l+10})});
+  const lock=ST.find(s=>!G.st[s.k].l);if(lock)opts.push({t:"open",k:lock.k});
+  const nm=U.find(s=>!G.st[s.k].m);if(nm)opts.push({t:"mgr",k:nm.k},{t:"mgr",k:nm.k});
+  opts.push({t:"earn",s:G.run,n:niceNum(Math.max(300,totalRate(false)*240))});
+  opts.push({t:"grid",s:G.plays,n:G.plays<3?1:2});
+  const z=ZONES.find(z=>!G.zones.includes(z.k));if(z&&z.cost<G.run*4+5000)opts.push({t:"zone",k:z.k});
+  const pool=opts.filter(o=>!have.includes(o.t+(o.k||"")));const m=pool[Math.floor(Math.random()*pool.length)]||opts[0];
+  G.misN++;m.rw=niceNum(Math.max(100,totalRate(false)*120));if(G.misN%3===0)m.h=1;return m}
+function misProg(m){const s=G.st[m.k];switch(m.t){
+  case"lvl":return[s.l,m.n];case"open":return[s.l?1:0,1];case"mgr":return[s.m,1];
+  case"earn":return[G.run-m.s,m.n];case"grid":return[G.plays-m.s,m.n];case"zone":return[G.zones.includes(m.k)?1:0,1]}}
+function misText(m){const d=SK[m.k];switch(m.t){
+  case"lvl":return d.name+" niveau "+m.n;case"open":return"Ouvrir : "+d.name;case"mgr":return"Embaucher "+d.boss+" ("+d.name+")";
+  case"earn":return"Encaisser "+fmt(m.n);case"grid":return"Réussir "+m.n+" grille"+(m.n>1?"s":"");case"zone":return"Construire : "+ZONES.find(z=>z.k===m.k).name}}
+function fillMissions(){while(G.mis.length<3)G.mis.push(newMission())}
+function claim(i){const m=G.mis[i],[a,b]=misProg(m);if(a<b)return;earn(m.rw);if(m.h)G.hints++;G.mis.splice(i,1);fillMissions();save();toast("🎯 +"+fmt(m.rw)+(m.h?" · +1 💡":""));render()}
+
+// ---- render ----
 function render(){
-  $("money").textContent=fmt(G.money);
-  const lv=level(),ri=rankIdx();$("rankLine").textContent=RANKS[ri]+" · Niv. "+lv;$("rank").textContent=RANKS[ri];$("lvlTxt").textContent="Niveau "+lv;
-  $("lvlBar").style.width=(((lv-1)%4)/4*100+6)+"%";
-  const nxt=GAMES.find(g=>g.unlock>lv);$("nextTxt").textContent=(ri<RANKS.length-1?"Rang suivant : "+RANKS[ri+1]+" au niveau "+(ri*4+5):"Rang maximum atteint")+(nxt?" · "+nxt.name+" au niveau "+nxt.unlock:"");
-  $("nextTxt").style.cssText="font-size:.75rem;color:var(--muted);font-weight:800";
-  $("rateTxt").textContent=fmt(passive())+"/min en salle";
-  drawMap();drawPlays();drawUps();
+  fillMissions();
+  const ri=rankIdx();$("rankLine").textContent=RANKS[ri]+" · "+cityName();
+  $("cityName").textContent="🏙️ "+cityName()+" · "+RANKS[ri];
+  $("starTxt").textContent="⭐ "+G.stars+" (+"+G.stars*10+" %)";
+  drawMap();drawMissions();drawRows();drawPlays();drawUps();
+  [...$("buyseg").children].forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===G.buy));
   $("banner").hidden=G.noAds;
-  coach();
+  live();coach();
 }
-function drawPlays(){const w=$("plays");w.innerHTML="";
-  GAMES.forEach(g=>{const lock=level()<g.unlock,done=g.daily&&dailyDone(),b=document.createElement("button");b.className="play"+(lock?" locked":"")+(done?" done":"");b.id="g_"+g.k;b.style.setProperty("--c",g.c);
-    const n=gridSize(g),sub=g.daily?(done?"Réussi aujourd'hui · reviens demain":"Grille 7x7 · gains x3"):lock?"Se débloque au niveau "+g.unlock:"Grille n°"+(G.gl[g.k]+1)+" · "+n+"x"+n+" · ~"+fmt(BASE[n]*mult());
-    b.innerHTML=`<div class="ic">${g.e}</div><div><b>${g.name}</b><small>${sub}</small></div><span class="go">${lock?"🔒":done?"✓":"Jouer"}</span>`;
-    b.onclick=()=>lock?toast("Agrandis ton resto jusqu'au niveau "+g.unlock):openGame(g);w.appendChild(b)})}
+function drawMissions(){const w=$("mis");w.innerHTML="";G.mis.forEach((m,i)=>{const[a,b]=misProg(m),ok=a>=b,r=document.createElement("div");r.className="mrow";
+  r.innerHTML=`<span class="e">${MIS_E[m.t]}</span><div><b>${misText(m)}</b><small>Récompense : ${fmt(m.rw)}${m.h?" + 1 💡":""}</small><div class="meter"><i id="mb${i}" style="width:${Math.min(100,a/b*100)}%"></i></div></div><button class="claim${ok?" ok":""}" id="mc${i}">${ok?"Récupérer":Math.min(a,b).toLocaleString("fr-FR",{maximumFractionDigits:0})+"/"+(m.t==="earn"?fmt(b):b)}</button>`;
+  r.querySelector("button").onclick=()=>claim(i);w.appendChild(r)});
+  $("misHint").textContent=G.hints+" 💡 en stock"}
+function drawRows(){const w=$("rows");w.innerHTML="";
+  ST.forEach(d=>{const s=G.st[d.k],r=document.createElement("div");r.className="srow"+(s.l?"":" locked");r.style.setProperty("--c",d.c);r.id="r_"+d.k;
+    if(!s.l){r.innerHTML=`<button class="ic">${d.e}<span class="lv">🔒</span></button><div class="tx"><b>${d.name}</b><small>${fmt(d.inc/d.cy*baseMult(d.k))}/s au niveau 1 · grille ${d.word}s</small></div><button class="upb" id="up_${d.k}">Ouvrir<small>${fmt(d.b)}</small></button>`;
+      r.querySelector(".upb").onclick=()=>buy(d.k);r.querySelector(".ic").onclick=()=>buy(d.k)}
+    else{const nm=nextMS(s.l),pm=MS.filter(x=>x<=s.l).pop()||0;
+      r.innerHTML=`<button class="ic" aria-label="Encaisser">${d.e}<span class="lv">Niv. ${s.l}</span></button><div class="tx"><b>${d.name}</b><small><span class="rate" id="rt_${d.k}"></span> · ${nm?"x2 au niv. "+nm:"paliers max"}</small><div class="meter"><i style="width:${nm?(s.l-pm)/(nm-pm)*100:100}%"></i></div></div><button class="upb" id="up_${d.k}"></button>
+        <div class="chips">${s.m?`<span class="chipb ok">👤 ${d.boss} encaisse tout seul</span>`:`<button class="chipb" id="mg_${d.k}">👤 Embaucher ${d.boss} · ${fmt(d.m)}</button>`}<button class="chipb hot" id="tb_${d.k}">🧩 Grille · turbo x2</button></div>`;
+      r.querySelector(".upb").onclick=()=>buy(d.k);r.querySelector(".ic").onclick=e=>{if(G.st[d.k].r)collect(d.k,$("m_"+d.k));else toast(s.m?d.boss+" s'en occupe":"Attends le 💰 sur la carte")};
+      if(!s.m)r.querySelector("#mg_"+d.k).onclick=()=>hire(d.k);r.querySelector("#tb_"+d.k).onclick=()=>openGame(d)}
+    w.appendChild(r)})}
+function drawPlays(){const w=$("plays");w.innerHTML="";const g=DAILY,done=dailyDone(),b=document.createElement("button");b.className="play"+(done?" done":"");b.id="g_daily";b.style.setProperty("--c",g.c);
+  b.innerHTML=`<div class="ic">${g.e}</div><div><b>${g.name}</b><small>${done?"Réussi aujourd'hui · reviens demain":"Grille 7x7 · gros gain + Rush x2 10 min"}</small></div><span class="go">${done?"✓":"Jouer"}</span>`;
+  b.onclick=()=>openGame(g);w.appendChild(b)}
 function drawUps(){const w=$("ups");w.innerHTML="";
-  UPS.forEach(u=>{const c=upCost(u),ok=G.money>=c,r=document.createElement("button");r.className="up"+(ok?" ok":"");r.id="u_"+u.k;
-    r.innerHTML=`<span class="ic">${u.e}</span><span class="tx"><b>${u.name} <i>Niv. ${G.up[u.k]}</i></b><small>${u.s()}</small></span><span class="price">${fmt(c)}</span>`;
-    r.onclick=()=>G.money>=upCost(u)?buyUp(u):toast("Il te manque "+fmt(upCost(u)-G.money)+" : joue une grille !");w.appendChild(r)});
-  const nxt=GAMES.find(g=>g.unlock>level());$("upHint").textContent=nxt?nxt.name+" au niveau "+nxt.unlock:"Tout est débloqué"}
-function buyUp(u){const c=upCost(u);if(G.money<c)return;G.money-=c;const before=GAMES.filter(g=>g.unlock<=level()).length;G.up[u.k]++;save();
-  const now=GAMES.filter(g=>g.unlock<=level());if(now.length>before)toast("🎉 Nouveau poste ouvert : "+now[now.length-1].name);else toast(u.e+" "+u.name+" niveau "+G.up[u.k]);
-  const m=$("map");m.classList.remove("pulse");void m.offsetWidth;m.classList.add("pulse");render()}
+  const tile=(id,e,name,lv,sub,price,done,fn)=>{const r=document.createElement("button");r.className="up"+(done?" done":"");r.id=id;r.dataset.p=done?"":price;
+    r.innerHTML=`<span class="ic">${e}</span><span class="tx"><b>${name} ${lv?`<i>${lv}</i>`:""}</b><small>${sub}</small></span><span class="price">${done?"✓ Ouvert":fmt(price)}</span>`;
+    r.onclick=()=>{if(done)return;if(G.money<price){toast("Il te manque "+fmt(price-G.money));return}G.money-=price;fn();save();pulse();render()};w.appendChild(r)};
+  ZONES.forEach(z=>tile("z_"+z.k,z.e,z.name,"",z.s,z.cost,G.zones.includes(z.k),()=>{G.zones.push(z.k);toast(z.e+" "+z.name+" ouvert : "+z.s)}));
+  tile("u_deco","🪴","Déco","Niv. "+G.deco,"+10 % sur tout",decoCost(),false,()=>{G.deco++;toast("🪴 Déco niveau "+G.deco)});
+  const nmax=G.night>=NIGHT_COST.length;
+  tile("u_night","🌙","Équipe de nuit","",nmax?"Hors ligne "+offlineCap()+" h":"Hors ligne "+offlineCap()+" h → "+NIGHT[G.night+1]+" h",nmax?0:NIGHT_COST[G.night],nmax,()=>{G.night++;toast("🌙 Gains hors ligne jusqu'à "+offlineCap()+" h")});
+  $("upHint").textContent="Hors ligne : "+offlineCap()+" h max"}
+
+// live numbers, bars and buttons (10x per second)
+function live(){
+  $("money").textContent=fmt(G.money);$("rateTop").textContent=fmt(totalRate())+"/s";
+  ST.forEach(d=>{const s=G.st[d.k],up=$("up_"+d.k);
+    const bar=$("sb_"+d.k);if(bar)bar.style.width=(s.l?(d.cy<.35&&s.m?100:Math.min(100,s.t/d.cy*100)):0)+"%";
+    const coin=$("cn_"+d.k);if(coin)coin.hidden=!s.r;
+    const bo=$("bo_"+d.k);if(bo)bo.hidden=!boostOn(d.k);
+    if(!up)return;
+    if(s.l){const n=buyN(d.k),c=cost(d.k,n);up.innerHTML="Améliorer"+(n>1?" x"+n:"")+"<small>"+fmt(c)+"</small>";up.classList.toggle("ok",G.money>=c);
+      $("rt_"+d.k).textContent=fmt(rate(d.k))+"/s"+(boostOn(d.k)?" ⚡":"");
+      const mg=$("mg_"+d.k);if(mg)mg.classList.toggle("on",G.money>=d.m);
+      const tb=$("tb_"+d.k);const bl=((G.boost[d.k]||0)-Date.now())/1000;tb.textContent=bl>0?"⚡ Turbo x2 · "+fmtT(bl):"🧩 Grille · turbo x2"}
+    else up.classList.toggle("ok",G.money>=d.b)});
+  document.querySelectorAll(".up").forEach(b=>b.classList.toggle("ok",!!b.dataset.p&&G.money>=+b.dataset.p));
+  G.mis.forEach((m,i)=>{const[a,b]=misProg(m),btn=$("mc"+i),bar=$("mb"+i);if(!btn)return;if(bar)bar.style.width=Math.min(100,a/b*100)+"%";
+    if(a>=b&&!btn.classList.contains("ok")){btn.classList.add("ok");btn.textContent="Récupérer"}});
+  const rl=(G.rush-Date.now())/1000;$("rushTag").hidden=rl<=0;$("rushTag").textContent="⚡ Rush x2 · "+fmtT(Math.max(0,rl));
+  $("rushBtn").textContent=rl>0?"⚡ Rush x2 · "+fmtT(rl):"▶ Rush x2 · 4 min";
+  const sc=starsClaim(),can=G.run>=PRESTIGE_AT&&sc>0;
+  $("preBar").style.width=Math.min(100,G.run/PRESTIGE_AT*100)+"%";
+  $("preTxt").textContent=G.run<PRESTIGE_AT?"Nouveau resto dans une autre ville à "+fmt(PRESTIGE_AT)+" gagnés ici ("+fmt(G.run)+")":"Prêt ! Ouvre un resto ailleurs et gagne +"+sc+" ⭐ (+"+sc*10+" % pour toujours)";
+  $("preBtn").classList.toggle("glow",can);$("preBtn").disabled=!can;
+}
 
 // ---- the restaurant map ----
-const SPOTS={fry:[17,15,"Friteuse"],sauce:[46,15,"Sauces"],catch:[75,15,"Livraisons"],memo:[87,37,"Caisse"]};
-const TABLES=[[18,51],[46,51],[74,51],[18,65],[46,65],[74,65],[18,79],[74,79],[32,91],[62,91],[46,79]];
-const DECOS=[["🪴",6,44],["🪴",94,52],["💡",94,68],["🖼️",94,60],["🌟",6,60],["🎈",94,80],["🪩",6,92],["🌺",6,78]];
+const SPOTS={fry:[17,14],sauce:[46,14],catch:[75,14],memo:[87,40]};
+const MGR_AT={fry:[29,27],sauce:[58,27],catch:[87,27],memo:[95,52]};
+const TABLES=[[18,52],[46,52],[74,52],[18,66],[46,66],[74,66],[18,80],[74,80],[46,80],[32,90],[62,90]];
+const DECOS=[["🪴",6,46],["🪴",94,62],["💡",6,60],["🖼️",94,72],["🌟",6,74],["🎈",94,84],["🪩",6,86],["🌺",60,40]];
+const ZPOS={terr:12,truck:30,drive:70,etage:88};
+const tablesN=()=>Math.min(TABLES.length,2+Math.floor(totalLvl()/12)+G.zones.length);
 function drawMap(){const m=$("mapItems");m.innerHTML="";
-  GAMES.forEach(g=>{const[x,y,lbl]=SPOTS[g.k],lock=level()<g.unlock,done=g.daily&&dailyDone(),b=document.createElement("button");
-    b.className="station"+(lock?" locked":"");b.id="m_"+g.k;b.style.left=x+"%";b.style.top=y+"%";b.style.setProperty("--c",g.c);b.setAttribute("aria-label",g.name);
-    b.innerHTML=`<div class="ic">${g.e}<span class="badge">${lock?"🔒":done?"✓":"!"}</span></div><span class="lb">${lbl}</span>`;
-    b.onclick=()=>lock?toast(g.name+" s'ouvre au niveau "+g.unlock):openGame(g);m.appendChild(b)});
-  const n=Math.min(TABLES.length,G.up.tables);
-  TABLES.forEach(([x,y],i)=>{if(i>n)return;const d=document.createElement(i<n?"div":"button");d.className="tbl"+(i<n?"":" empty");d.style.left=x+"%";d.style.top=y+"%";
-    if(i<n)d.innerHTML='<div class="c l"></div><div class="c r"></div><div class="t"></div><div class="plate" id="plate'+i+'"></div>';
-    else{d.textContent="+";d.setAttribute("aria-label","Ajouter une table");d.onclick=()=>{const u=UPS[1];if(G.money>=upCost(u))buyUp(u);else toast("Une table coûte "+fmt(upCost(u)))}}
-    m.appendChild(d)});
-  DECOS.slice(0,Math.min(DECOS.length,G.up.deco)).forEach(([e,x,y])=>{const d=document.createElement("div");d.className="dec";d.textContent=e;d.style.left=x+"%";d.style.top=y+"%";m.appendChild(d)});
-  for(let k=0;k<Math.min(4,1+G.up.staff);k++){const c=document.createElement("div");c.className="mchef";c.innerHTML=person({chef:true,skin:SKINS[(k*2+1)%SKINS.length]});c.style.left=(25+k*15)+"%";c.style.top="34%";m.appendChild(c)}}
-setInterval(()=>{document.querySelectorAll(".mchef").forEach(c=>{if(Math.random()<.35)return;c.style.left=(12+Math.random()*70)+"%";c.style.top="34%";c.classList.add("walk");clearTimeout(c._t);c._t=setTimeout(()=>c.classList.remove("walk"),1200)})},1600);
+  ST.forEach(d=>{const[x,y]=SPOTS[d.k],s=G.st[d.k],b=document.createElement("button");
+    b.className="station"+(s.l?"":" locked");b.id="m_"+d.k;b.style.left=x+"%";b.style.top=y+"%";b.style.setProperty("--c",d.c);b.setAttribute("aria-label",d.name);
+    b.innerHTML=`<div class="ic">${d.e}<span class="badge">${s.l?s.l:"🔒"}</span><span class="coin" id="cn_${d.k}" hidden>💰</span><span class="boost" id="bo_${d.k}" hidden>⚡</span></div>`+(s.l?`<span class="sbar"><i id="sb_${d.k}"></i></span>`:`<span class="price2">${fmt(d.b)}</span>`);
+    b.onclick=()=>{if(!s.l){if(G.money>=d.b)buy(d.k);else toast(d.name+" : "+fmt(d.b)+" pour ouvrir")}else if(s.r)collect(d.k,b);else if(!s.m)toast("Attends le 💰 puis tape pour encaisser")};m.appendChild(b);
+    if(s.m){const[mx,my]=MGR_AT[d.k],c=document.createElement("div");c.className="mgr";c.innerHTML=person({chef:true,skin:SKINS[(ST.indexOf(d)*2+1)%SKINS.length]});c.style.left=mx+"%";c.style.top=my+"%";c.title=d.boss;m.appendChild(c)}});
+  const n=tablesN();
+  TABLES.slice(0,n).forEach(([x,y],i)=>{const d=document.createElement("div");d.className="tbl";d.style.left=x+"%";d.style.top=y+"%";
+    d.innerHTML='<div class="c l"></div><div class="c r"></div><div class="t"></div><div class="plate" id="plate'+i+'"></div>';m.appendChild(d)});
+  DECOS.slice(0,Math.min(DECOS.length,G.deco)).forEach(([e,x,y])=>{const d=document.createElement("div");d.className="dec";d.textContent=e;d.style.left=x+"%";d.style.top=y+"%";m.appendChild(d)});
+  ZONES.forEach(z=>{if(!G.zones.includes(z.k))return;const p=document.createElement("div");p.className="zp";p.textContent=z.e+" "+z.name.replace("Salle à l'étage","Étage");p.style.left=ZPOS[z.k]+"%";p.style.top="96%";m.appendChild(p)});
+  for(let k=0;k<Math.min(3,1+Math.floor(G.deco/2));k++){const c=document.createElement("div");c.className="mchef";c.innerHTML=person({chef:true,skin:SKINS[(k*2+2)%SKINS.length]});c.style.left=(20+k*20)+"%";c.style.top="30%";m.appendChild(c)}}
+setInterval(()=>{document.querySelectorAll(".mchef").forEach(c=>{if(Math.random()<.35)return;c.style.left=(12+Math.random()*70)+"%";c.style.top="30%";c.classList.add("walk");clearTimeout(c._t);c._t=setTimeout(()=>c.classList.remove("walk"),1200)})},1600);
+function floaty(txt,el){if(!el||!el.isConnected)return;const m=$("map"),r=el.getBoundingClientRect(),mr=m.getBoundingClientRect();if(r.top>mr.bottom||r.bottom<mr.top)return;
+  const f=document.createElement("div");f.className="float";f.textContent=txt;f.style.left=((r.left+r.width/2-mr.left)/mr.width*100)+"%";f.style.top=((r.top-mr.top)/mr.height*100)+"%";m.appendChild(f);setTimeout(()=>f.remove(),1000)}
 
 // ---- drawn characters (front view, chibi style) ----
 const SKINS=["#ffdcc2","#f6c39d","#e0a274","#b97a4f","#8a5534","#5e3a22"],HAIRS=["#2b1d16","#5a3825","#a0612f","#e8b04c","#d9473f","#1f2a5a","#ff7ab8"],SHIRTS=["#ff4fa3","#38bdff","#8b6bff","#4ee6a2","#ffb547","#ff6b6b","#2fd3c4"];
@@ -350,41 +496,68 @@ function person(o={}){const skin=o.skin||pick(SKINS),hair=o.hair||pick(HAIRS),sh
       <ellipse cx="13" cy="23" rx="2" ry="1.2" fill="#ff7ab8" opacity=".45"/><ellipse cx="27" cy="23" rx="2" ry="1.2" fill="#ff7ab8" opacity=".45"/>
       <path d="M17.5 23.5 Q20 25.8 22.5 23.5" fill="none" stroke="#14164a" stroke-width="1.2" stroke-linecap="round"/>
       ${front}</g></svg>`}
-const PEOPLE=["🧑","👩","🧔","👱","👩‍🦱","🧕","👧","🧑‍🦰","👨‍🦳","🧑‍🎤"],FOODS=["🍗","🍟","🍔","🌯","🍚","🥤"];
+
+const PEOPLE=[],FOODS=["🍗","🍟","🍔","🌯","🍚","🥤"];
 let walkers=0,busyTables=new Set();
 function walk(el,x,y){el.style.left=x+"%";el.style.top=y+"%";if(el.isConnected){el.classList.add("walk");clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove("walk"),1600)}}
-function spawnCustomer(){const mi=$("mapItems");if(!mi||tab!=="home"||walkers>=2+G.up.tables||document.hidden)return;walkers++;
+function spawnCustomer(){const mi=$("mapItems");if(!mi||walkers>=2+tablesN()||document.hidden)return;walkers++;
   const w=document.createElement("div");w.className="walker";w.innerHTML=person();walk(w,50,104);mi.appendChild(w);
-  const food=FOODS[Math.floor(Math.random()*FOODS.length)],n=Math.min(TABLES.length,G.up.tables),free=[...Array(n).keys()].filter(i=>!busyTables.has(i));
+  const food=FOODS[Math.floor(Math.random()*FOODS.length)],n=tablesN(),free=[...Array(n).keys()].filter(i=>!busyTables.has(i));
   setTimeout(()=>walk(w,25+Math.random()*40,44),50);setTimeout(()=>{const sm=document.createElement("small");sm.textContent=food;w.appendChild(sm)},2000);
   if(free.length){const t=free[Math.floor(Math.random()*free.length)];busyTables.add(t);const[x,y]=TABLES[t];
     setTimeout(()=>walk(w,x-6,y+2),2600);setTimeout(()=>{const p=$("plate"+t);if(p)p.textContent=food;w.querySelector("small")?.remove()},4300);
     setTimeout(()=>{const p=$("plate"+t);if(p)p.textContent="";walk(w,50,104)},8300+Math.random()*3000);setTimeout(()=>{w.remove();walkers--;busyTables.delete(t)},13300)}
   else{setTimeout(()=>walk(w,50,104),2700);setTimeout(()=>{w.remove();walkers--},4500)}}
-(function loopSpawn(){spawnCustomer();setTimeout(loopSpawn,Math.max(900,3200/(1+G.up.tables*.35+G.up.deco*.15)))})();
+(function loopSpawn(){spawnCustomer();setTimeout(loopSpawn,Math.max(900,3200/(1+tablesN()*.3)))})();
 
-setInterval(()=>{if(!passive())return;const v=passive()/60;G.money+=v;G.lifetime+=v;$("money").textContent=fmt(G.money);
-  document.querySelectorAll(".up").forEach((b,i)=>b.classList.toggle("ok",G.money>=upCost(UPS[i])))},1000);
-setInterval(save,5000);document.addEventListener("visibilitychange",()=>{if(document.hidden)save()});
+// ---- VIP customer: tap for a big tip ----
+let vipOn=false;
+function spawnVip(){const mi=$("mapItems");if(vipOn||!mi||document.hidden||!$("overlay").hidden||!$("stage").hidden||G.plays<1)return;vipOn=true;
+  const w=document.createElement("button");w.className="walker vip";w.style.border="0";w.style.background="none";w.setAttribute("aria-label","Client VIP");
+  w.innerHTML=person({shirt:"#ffcf4a",style:3})+"<small>⭐</small>";walk(w,50,104);mi.appendChild(w);setTimeout(()=>walk(w,40+Math.random()*20,46),50);
+  const bye=setTimeout(()=>{walk(w,50,104);setTimeout(()=>{w.remove();vipOn=false},1700)},16000);
+  w.onclick=()=>{clearTimeout(bye);w.remove();vipOn=false;const v=niceNum(Math.max(80,totalRate(false)*90));
+    show(`<div class="kicker">Client VIP</div><div class="emo">🕶️</div><h2>Un critique gastro !</h2><p>Il adore tes croustys et laisse un pourboire.</p><div class="big">+${fmt(v)}</div><button class="btn pink" id="x3">▶ Tripler avec une vidéo · +${fmt(v*3)}</button><button class="btn ghost" id="take">Récupérer</button>`);
+    const pay=x=>{earn(x);save();render();toast("🕶️ +"+fmt(x))};$("take").onclick=()=>{hide();pay(v)};$("x3").onclick=()=>{hide();rewarded("Regarde une courte vidéo pour tripler le pourboire.",()=>pay(v*3),()=>pay(v))}}}
+(function loopVip(){setTimeout(()=>{spawnVip();loopVip()},(90+Math.random()*90)*1000)})();
 
-// ---- open a puzzle ----
+// ---- production loop ----
+let lastTick=Date.now(),hiddenAt=0;
+setInterval(()=>{const now=Date.now(),dt=Math.min(2,(now-lastTick)/1000);lastTick=now;if(document.hidden)return;
+  ST.forEach(d=>{const s=G.st[d.k];if(!s.l||(s.r&&!s.m))return;s.t+=dt;if(s.t<d.cy)return;
+    if(s.m){const n=Math.floor(s.t/d.cy),v=n*perCycle(d.k);earn(v);s.t-=n*d.cy;if(d.cy>=2)floaty("+"+fmt(v),$("m_"+d.k))}else{s.r=1;s.t=d.cy}});
+  live()},100);
+setInterval(()=>{if(!document.hidden)save()},5000);
+document.addEventListener("visibilitychange",()=>{if(document.hidden){save();hiddenAt=Date.now()}else if(hiddenAt){const away=Date.now()-hiddenAt;hiddenAt=0;lastTick=Date.now();if(away>60000&&$("overlay").hidden&&$("stage").hidden)offline(away)}});
+
+// ---- puzzles: each station has its grid; a win gives cash + a x2 turbo ----
+const BASE={5:40,6:70,7:110,8:170,9:250};
+function gridSize(g){return g.daily?7:g.sizes[Math.min(g.sizes.length-1,G.gl[g.k])]}
+function rulesFor(g){return "Place <b>1 "+g.word+" par ligne, par colonne et par zone de couleur</b>. Deux "+g.piece+" ne peuvent jamais se toucher, même en diagonale. 3 erreurs max, et x1,5 si tu ne te trompes pas."+(g.daily?" Une seule grille par jour : elle rapporte gros et lance un <b>Rush x2 de 10 min</b>.":" Réussie, elle lance un <b>turbo x2 de 3 min</b> sur ce poste.")}
 function openGame(g){
-  if(level()<g.unlock){toast(g.name+" s'ouvre au niveau "+g.unlock);return}
-  if(g.daily&&dailyDone()){show(`<div class="emo">✅</div><h2>Défi réussi</h2><p>Reviens demain pour une nouvelle grille qui rapporte 3 fois plus.</p><button class="btn primary" id="x">OK</button>`);$("x").onclick=hide;return}
+  if(g.daily&&dailyDone()){show(`<div class="emo">✅</div><h2>Défi réussi</h2><p>Reviens demain pour une nouvelle grille.</p><button class="btn primary" id="x">OK</button>`);$("x").onclick=hide;return}
+  if(!g.daily&&!G.st[g.k].l){toast("Ouvre d'abord : "+g.name);return}
   const n=gridSize(g),sub=g.daily?"Grille du "+new Date().toLocaleDateString("fr-FR",{day:"numeric",month:"long"}):"Grille n°"+(G.gl[g.k]+1)+" · "+n+"x"+n;
-  if(G.plays<1&&!g.daily||g.daily&&!G.best.memo){show(`<div class="emo">${g.e}</div><div class="kicker">${sub}</div><h2>${g.name}</h2><p>${rulesFor(g)}</p><button class="btn primary" id="go">Jouer</button><button class="btn ghost" id="x">Plus tard</button>`);
+  if(G.plays<1&&!g.daily||g.daily&&!G.dailySeen){if(g.daily)G.dailySeen=1;show(`<div class="emo">${g.e}</div><div class="kicker">${sub}</div><h2>${g.name}</h2><p>${rulesFor(g)}</p><button class="btn primary" id="go">Jouer</button><button class="btn ghost" id="x">Plus tard</button>`);
     $("x").onclick=hide;$("go").onclick=()=>{hide();start(g)}}else start(g)}
 let cleanup=null;
 function start(g){$("stage").hidden=false;document.body.style.overflow="hidden";$("arena").innerHTML="";playGrid(g,$("arena"),score=>finish(g,score))}
 function closeStage(){if(cleanup){cleanup();cleanup=null}$("stage").hidden=true;document.body.style.overflow=""}
 $("quit").onclick=()=>{closeStage();render()};
-function finish(g,score){closeStage();G.plays++;if(score>(G.best[g.k]||0))G.best[g.k]=score;const gain=Math.round(score*mult());save();
-  show(`<div class="emo">${score>0?"🤩":"😅"}</div><h2>${score>0?"Grille réussie !":"Grille perdue"}</h2><p>${score} pts × ${mult().toFixed(2).replace(".",",")} bonus du resto</p><div class="big">+${fmt(gain)}</div>
-    ${gain>0?`<button class="btn pink" id="x2">▶ Doubler avec une vidéo · +${fmt(gain*2)}</button>`:""}${!g.daily?`<button class="btn primary" id="again">Grille suivante</button>`:""}<button class="btn ghost" id="take">Retour au resto</button>`);
-  const pay=v=>{G.money+=v;G.lifetime+=v;save();render()};
+function finish(g,score){closeStage();
+  if(!score){show(`<div class="emo">😅</div><h2>Grille perdue</h2><p>Pas de turbo cette fois. Retente ta chance !</p><button class="btn primary" id="again">Réessayer</button><button class="btn ghost" id="take">Retour au resto</button>`);
+    $("take").onclick=()=>{hide();render()};$("again").onclick=()=>{hide();start(g)};return}
+  G.plays++;const sec=g.daily?90:30,gain=Math.round(score*(1+.1*G.stars)*(1+.1*G.deco)+totalRate(false)*sec*(score/BASE[gridSize(g)]||1)),now=Date.now();
+  let bonus;
+  if(g.daily){G.rush=Math.max(now,G.rush)+10*60000;bonus="⚡ Rush x2 sur tout le resto pendant 10 min"}
+  else{G.boost[g.k]=Math.min(now+15*60000,Math.max(now,G.boost[g.k]||0)+3*60000);bonus="⚡ Turbo x2 sur "+g.name+" pendant "+fmtT((G.boost[g.k]-now)/1000)}
+  save();
+  show(`<div class="emo">🤩</div><h2>Grille réussie !</h2><p>${bonus}</p><div class="big">+${fmt(gain)}</div>
+    <button class="btn pink" id="x2">▶ Doubler avec une vidéo · +${fmt(gain*2)}</button>${!g.daily?`<button class="btn primary" id="again">Grille suivante</button>`:""}<button class="btn ghost" id="take">Retour au resto</button>`);
+  const pay=v=>{earn(v);save();render()};
   $("take").onclick=()=>{hide();pay(gain);maybeInterstitial(()=>{})};
   if($("again"))$("again").onclick=()=>{hide();pay(gain);maybeInterstitial(()=>start(g))};
-  if($("x2"))$("x2").onclick=()=>{hide();rewarded("Regarde une courte vidéo pour doubler les gains de cette grille.",()=>{pay(gain*2);toast("+"+fmt(gain*2))},()=>pay(gain))}}
+  $("x2").onclick=()=>{hide();rewarded("Regarde une courte vidéo pour doubler les gains de cette grille.",()=>{pay(gain*2);toast("+"+fmt(gain*2))},()=>pay(gain))}}
 
 function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function shuffle(arr,r){for(let i=arr.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
@@ -460,11 +633,13 @@ function playGrid(g,a,done){
   draw();cleanup=()=>window.removeEventListener("pointerup",stop);
 }
 
-// ---- coach (first minute) ----
+// ---- coach (first minutes) ----
 const TUT=[
-  {el:()=>$("g_fry"),txt:"Salut, moi c'est <b>Chef Poulette</b> ! Lance ta première grille à la <b>Friteuse</b>. Un tender est déjà posé pour t'aider.",done:()=>G.plays>=1},
-  {el:()=>$("u_fry"),txt:"Bravo ! Tape sur <b>Friteuses</b> juste ici pour agrandir ton resto : tes grilles rapporteront plus.",done:()=>level()>=2},
-  {el:()=>$("g_memo"),txt:"Dernier conseil : le <b>Défi du jour</b> rapporte 3 fois plus. Une grille par jour, ne la rate pas 🔥",ok:true},
+  {el:()=>$("m_fry"),txt:"Salut, moi c'est <b>Chef Poulette</b> ! Quand le 💰 apparaît sur la <b>Friteuse</b>, tape dessus pour encaisser.",done:()=>G.taps>=3||G.st.fry.m},
+  {el:()=>$("up_fry"),txt:"Bien joué ! <b>Améliore la Friteuse</b> : chaque niveau rapporte plus, et les paliers 10, 25, 50… doublent tout.",done:()=>G.st.fry.l>=5},
+  {el:()=>$("mg_fry"),txt:"Garde 250 € pour embaucher <b>Momo</b> : il encaisse à ta place, même quand le jeu est fermé.",done:()=>G.st.fry.m},
+  {el:()=>$("tb_fry"),txt:"Joue une <b>grille</b> à la Friteuse : réussie, elle rapporte de l'argent et un <b>turbo x2</b> pendant 3 min.",done:()=>G.plays>=1},
+  {el:()=>$("mis"),txt:"Remplis les <b>Objectifs</b>, fais le <b>Défi du jour</b>, et à 1 M € tu pourras ouvrir un resto dans une autre ville avec des ⭐ bonus 🔥",ok:true},
 ];
 let spotEl=null;
 function coach(){while(G.tut<TUT.length&&TUT[G.tut].done&&TUT[G.tut].done()){G.tut++;save()}
@@ -477,29 +652,45 @@ $("coachSkip").onclick=()=>{G.tut=TUT[G.tut]&&TUT[G.tut].ok?G.tut+1:TUT.length;s
 function rewarded(msg,ok,onCancel){if(G.noAds){ok();return}
   show(`<div class="kicker">Vidéo récompensée</div><div class="emo">🎬</div><h2>Bonus vidéo</h2><p>${msg}</p><button class="btn pink" id="w">▶ Regarder (simulée)</button><button class="btn ghost" id="x">Non merci</button>`);
   $("x").onclick=()=>{hide();onCancel&&onCancel()};$("w").onclick=()=>fakeAd(5,"Vidéo récompensée (simulée)",()=>{hide();ok()})}
-function maybeInterstitial(then){if(G.noAds||G.plays%3!==0||Date.now()-G.lastAd<3*60*1000){then();return}G.lastAd=Date.now();fakeAd(3,"Pub plein écran (simulée) · 1 partie sur 3 max",()=>{hide();then()})}
+function maybeInterstitial(then){if(G.noAds||G.plays%3!==0||Date.now()-G.lastAd<5*60*1000){then();return}G.lastAd=Date.now();fakeAd(3,"Pub plein écran (simulée) · 1 toutes les 5 min max",()=>{hide();then()})}
 function fakeAd(sec,label,done){const c=$("card");c.classList.add("adv");$("overlay").hidden=false;let n=sec;
   const d=()=>c.innerHTML=`<div class="kicker">${label}</div><div class="big">${n}</div><p>Ici s'affichera une vraie pub AdMob.</p>`;d();
   const it=setInterval(()=>{n--;if(n<=0){clearInterval(it);c.classList.remove("adv");done()}else d()},1000)}
 $("noAdsBtn").onclick=()=>{show(`<div class="emo">🚫</div><h2>Jouer sans pub</h2><p>Dans l'appli, ce sera un achat unique (environ 2,99 €). Les bonus vidéo deviennent gratuits et instantanés.</p><button class="btn primary" id="b">Simuler l'achat</button><button class="btn ghost" id="x">Plus tard</button>`);
   $("b").onclick=()=>{G.noAds=true;save();hide();render();toast("Pubs retirées")};$("x").onclick=hide};
 
-// ---- offline earnings ----
-function offline(){const away=(Date.now()-(G.last||Date.now()))/60000;if(away<1||!passive())return;const mins=Math.min(away,offlineCap()*60),v=passive()*mins;
-  show(`<div class="emo">🍽️</div><h2>Pendant ton absence</h2><p>Tes clients ont mangé sur place pendant ${Math.round(mins)} min.</p><div class="big">+${fmt(v)}</div><button class="btn pink" id="x2">▶ Doubler · +${fmt(v*2)}</button><button class="btn ghost" id="take">Récupérer</button>`);
-  const pay=x=>{G.money+=x;G.lifetime+=x;save();render()};$("take").onclick=()=>{hide();pay(v)};$("x2").onclick=()=>{hide();rewarded("Regarde une courte vidéo pour doubler tes gains hors ligne.",()=>pay(v*2),()=>pay(v))}}
+// ---- rush video ----
+$("rushBtn").onclick=()=>{if(rushOn()){toast("Rush déjà actif");return}rewarded("Regarde une courte vidéo : tous tes postes rapportent x2 pendant 4 minutes.",()=>{G.rush=Date.now()+4*60000;save();render();toast("⚡ Rush x2 lancé !")})};
+
+// ---- new restaurant in another city (prestige) ----
+$("preBtn").onclick=()=>{const sc=starsClaim();if(G.run<PRESTIGE_AT||!sc)return;const next=CITIES[(G.city+1)%CITIES.length];
+  show(`<div class="kicker">Nouveau resto</div><div class="emo">🏙️</div><h2>Ouvrir à ${next} ?</h2><p>Tu repars de zéro dans une nouvelle ville (argent, postes, managers, agrandissements), mais tu gagnes <b>+${sc} ⭐</b>. Chaque étoile donne <b>+10 % sur tous les gains, pour toujours</b>.</p><p>Tu gardes : étoiles, indices, progression des grilles, achat sans pub.</p><div class="big">⭐ ${G.stars} → ${G.stars+sc}</div><button class="btn primary" id="ok">Ouvrir à ${next}</button><button class="btn ghost" id="x">Pas encore</button>`);
+  $("x").onclick=hide;$("ok").onclick=()=>{G.stars+=sc;G.city++;Object.assign(G,{money:0,run:0,st:freshSt(),zones:[],deco:0,night:0,boost:{},mis:[]});save();hide();render();pulse();toast("🏙️ Bienvenue à "+cityName()+" ! +"+sc+" ⭐")}};
+
+// ---- offline earnings, then daily login reward ----
+function offline(away,then){const mins=Math.min(away/60000,offlineCap()*60),r=offlineRate();
+  if(away<60000||!r){then&&then();return}const v=r*mins*60;
+  show(`<div class="emo">🍽️</div><h2>Pendant ton absence</h2><p>Tes managers ont fait tourner le resto pendant ${mins>=60?Math.floor(mins/60)+" h "+String(Math.round(mins%60)).padStart(2,"0"):Math.round(mins)+" min"}${away/60000>mins?" (max "+offlineCap()+" h : agrandis l'Équipe de nuit)":""}.</p><div class="big">+${fmt(v)}</div><button class="btn pink" id="x2">▶ Doubler · +${fmt(v*2)}</button><button class="btn ghost" id="take">Récupérer</button>`);
+  const pay=x=>{earn(x);save();render();then&&then()};$("take").onclick=()=>{hide();pay(v)};$("x2").onclick=()=>{hide();rewarded("Regarde une courte vidéo pour doubler tes gains hors ligne.",()=>pay(v*2),()=>pay(v))}}
+function login(){const t=todayKey();if(G.login.day===t)return;if(!G.login.day){G.login={day:t,streak:1};save();return}const streak=G.login.day===dayKey(-1)?G.login.streak%7+1:1;G.login={day:t,streak};
+  const v=niceNum(Math.max(50*streak,totalRate(false)*60*streak)),h=streak===7?3:0;earn(v);G.hints+=h;save();
+  const days=[1,2,3,4,5,6,7].map(d=>`<span style="display:inline-grid;place-items:center;width:34px;height:34px;border-radius:12px;font-weight:900;font-size:.8rem;background:${d<=streak?"var(--grad)":"rgba(255,255,255,.08)"}">${d===7?"🎁":d}</span>`).join(" ");
+  show(`<div class="kicker">Cadeau du jour · jour ${streak}/7</div><div class="emo">🎁</div><h2>Bon retour, chef !</h2><div>${days}</div><div class="big">+${fmt(v)}</div>${h?"<p><b>+3 💡 indices</b> pour ta semaine complète !</p>":"<p>Reviens demain pour un plus gros cadeau.</p>"}<button class="btn primary" id="x">Merci !</button>`);
+  $("x").onclick=()=>{hide();render()}}
 
 // ---- misc ----
+$("buyseg").onclick=e=>{const b=e.target.closest("button");if(!b)return;G.buy=+b.dataset.n;save();render()};
 $("helpBtn").onclick=()=>{show(`<div class="emo">🐔</div><h2>Comment jouer</h2><ol>
-  <li>Tape sur un poste du resto pour jouer à sa <b>grille</b> : 1 produit par ligne, par colonne et par couleur, jamais collés, même en diagonale.</li>
-  <li>Chaque grille réussie rapporte de l'argent. Sans erreur, c'est x1,5.</li>
-  <li>Juste sous le resto, tape sur <b>Agrandir</b> pour dépenser tes gains : friteuses, tables, déco, équipe. Le resto monte de niveau et ouvre de nouveaux postes.</li>
-  <li>Le <b>Défi du jour</b> rapporte 3 fois plus, une fois par jour.</li></ol>
+  <li>Chaque <b>poste</b> cuisine en boucle. Tape sur le 💰 pour encaisser, ou embauche un <b>manager</b> qui encaisse à ta place, même hors ligne.</li>
+  <li><b>Améliore</b> tes postes : aux paliers 10, 25, 50, 100… leurs gains doublent.</li>
+  <li>Joue la <b>grille</b> d'un poste (1 produit par ligne, colonne et couleur, jamais collés) : argent + <b>turbo x2</b> de 3 min.</li>
+  <li><b>Agrandis</b> : terrasse, drive, étage, food truck, déco, équipe de nuit.</li>
+  <li>À 1 M € gagnés, ouvre un <b>nouveau resto</b> dans une autre ville : tu repars de zéro avec des ⭐ qui boostent tout pour toujours.</li></ol>
   <button class="btn primary" id="x">Compris</button><button class="btn ghost" id="replay">Revoir le tuto</button>`);$("x").onclick=hide;$("replay").onclick=()=>{G.tut=0;save();hide();render()}};
-$("resetBtn").onclick=()=>{show(`<h2>Recommencer à zéro ?</h2><p>Ton resto, ton argent et tes grilles seront effacés.</p><button class="btn pink" id="ok">Tout effacer</button><button class="btn ghost" id="x">Annuler</button>`);$("x").onclick=hide;$("ok").onclick=()=>{store.clear();G=fresh();save();hide();render()}};
+$("resetBtn").onclick=()=>{show(`<h2>Recommencer à zéro ?</h2><p>Ton resto, ton argent, tes étoiles et tes grilles seront effacés.</p><button class="btn pink" id="ok">Tout effacer</button><button class="btn ghost" id="x">Annuler</button>`);$("x").onclick=hide;$("ok").onclick=()=>{store.clear();G=fresh();save();hide();render()}};
 function show(h){const c=$("card");c.classList.remove("adv");c.innerHTML=h;$("overlay").hidden=false;const b=c.querySelector("button");b&&b.focus({preventScroll:true})}
 function hide(){$("overlay").hidden=true}
 let tt;function toast(m){const t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2400)}
 
-render();offline();
+render();offline(Date.now()-(G.last||Date.now()),login);
 </script>
